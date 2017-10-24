@@ -1,0 +1,114 @@
+apply plugin: 'com.android.application'
+
+def secretFile = file("${rootDir}/secret.gradle")
+if (!secretFile.exists()) {
+    logger.lifecycle("secret.gradle file not found!")
+    throw new GradleException("secret.gradle file not found!")
+}
+apply from: "${rootDir}/secret.gradle"
+
+def keystoreFile = file("${rootDir}/${keystore}")
+if (!keystoreFile.exists()) {
+    logger.lifecycle("${keystore} file not found!")
+    throw new GradleException("${keystore} file not found!")
+}
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        // used for books api (register my own)
+        applicationId "com.criticalblue.auth.demo"
+
+        // Used to identify activity handling the redirect
+        manifestPlaceholders = [
+                //'appAuthRedirectScheme': "com.googleusercontent.apps.708887469285-c07sqh3rgg9ke8tho0hgbfb79sde7394"
+                'appAuthRedirectScheme': ''
+        ]
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    signingConfigs {
+        secret {
+            storeFile file("${rootDir}/secret.keystore")
+            storePassword "secret"
+            keyAlias "secret"
+            keyPassword "secret"
+        }
+    }
+
+    buildTypes {
+        debug {
+            signingConfig signingConfigs.secret
+
+            resValue "string", "api_key", "${apiKey}"
+
+            resValue "string", "discovery_endpoint", "${discoveryEndpoint}"
+
+            resValue "string", "authorization_endpoint", "${authorizationEndpoint}"
+            resValue "string", "token_endpoint", "${tokenEndpoint}"
+            resValue "string", "user_info_endpoint", "${userInfoEndpoint}"
+
+            resValue "string", "client_id", "${clientId}"
+            resValue "string", "redirect_scheme", "${redirectScheme}"
+            resValue "string", "redirect_uri", "${redirectUri}"
+
+            resValue "string", "authorization_scope", "${authorizationScope}"
+        }
+        release {
+            signingConfig signingConfigs.secret
+
+            resValue "string", "api_key", "${apiKey}"
+
+            resValue "string", "discovery_endpoint", "${discoveryEndpoint}"
+
+            resValue "string", "authorization_endpoint", "${authorizationEndpoint}"
+            resValue "string", "token_endpoint", "${tokenEndpoint}"
+            resValue "string", "user_info_endpoint", "${userInfoEndpoint}"
+
+            resValue "string", "client_id", "${clientId}"
+            resValue "string", "redirect_scheme", "${redirectScheme}"
+            resValue "string", "redirect_uri", "${redirectUri}"
+
+            resValue "string", "authorization_scope", "${authorizationScope}"
+        }
+    }
+
+    configurations.all {
+        // resolves conflict between espresso and google api dependencies
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation "com.android.support:recyclerview-v7:26.1.0"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    implementation "android.arch.lifecycle:runtime:1.0.0-alpha9"
+    implementation "android.arch.lifecycle:extensions:1.0.0-alpha9"
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha9"
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'net.openid:appauth:0.7.0'
+    implementation  group: 'com.google.guava', name: 'guava', version: '23.2-android'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+}
