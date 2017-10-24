@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item
+        android:id="@+id/user_item"
+        android:icon="@drawable/ic_account_circle_white_24dp"
+        android:title="@string/user"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/search_item"
+        app:showAsAction="never"
+        android:title="@string/search" />
+
+    <item
+        android:id="@+id/favorites_item"
+        app:showAsAction="never"
+        android:title="@string/favorites" />
+
+    <item
+        android:id="@+id/loginout_item"
+        app:showAsAction="never"
+        android:title="@string/login" />
+</menu>

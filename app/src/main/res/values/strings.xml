@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Books Demo</string>
+
+    <string name="search">Search</string>
+    <string name="favorites">Favorites</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="no_results">No results found</string>
+    <string name="user">User</string>
+
+    <string name="search_title">Book Search</string>
+    <string name="search_hint">Book title or author</string>
+
+    <string name="favorites_format">%1$s\'s Favorities</string>
+    <string name="favorites_blank">Favorities</string>
+
+    <string name="auth_init_complete">Authorization initialzation complete</string>
+    <string name="auth_service_discovery_start">Discovering authorization service configuration</string>
+    <string name="auth_service_discovery_complete">Authorization service discovery complete</string>
+    <string name="auth_config_success">Authorization configuration success</string>
+    <string name="auth_config_failure">Authorization configuration faliure</string>
+    <string name="auth_user_auth_start">Starting user authorization</string>
+    <string name="auth_user_auth_complete">User authorization complete</string>
+    <string name="auth_code_exchange_start">Starting code exchange</string>
+    <string name="auth_code_exchange_complete">Code exchange complete</string>
+    <string name="auth_login_success">Authorization login success</string>
+    <string name="auth_login_failure">Authorization login faliure</string>
+    <string name="auth_logout_success">Authorization logout success</string>
+</resources>

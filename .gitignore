@@ -1,0 +1,16 @@
+.idea
+*.iml
+
+.gradle
+gradlelogs.txt
+build
+.externalNativeBuild
+captures
+
+/local.properties
+
+# keep secret files out of git
+/secret.*
+
+.DS_Store
+
