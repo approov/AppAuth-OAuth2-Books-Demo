@@ -1,5 +1,8 @@
 ## Adding OAuth2 to Mobile Android and iOS Clients Using the AppAuth SDK
 
+> **IMPORTANT:** This repository relates to Approov 1 and has not been updated to reflect the [new features](https://approov.io/docs/v2.0/changelog/) and [usage](https://approov.io/docs/v2.0/approov-usage-documentation/) of [Approov 2](https://approov.io/docs/v2.0/approov-installation/), the latest version of Approov. We will be updating the repository soon. Meanwhile, please refer to the [guide](https://approov.io/docs/v2.0/approov-usage-documentation/#migrating-from-approov-1) for migrating from Approov 1 to Approov 2.
+
+
 [OAuth2](https://oauth.net/2/), often combined with
 [OpenID-Connect](http://openid.net/connect/), is a popular authorization
 framework that enables applications to protect resources from unauthorized
